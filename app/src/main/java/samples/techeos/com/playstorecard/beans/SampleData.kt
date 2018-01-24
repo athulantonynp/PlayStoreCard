@@ -6,7 +6,7 @@ package samples.techeos.com.playstorecard.beans
 
 data class SampleData(val title:String,
                        val image:String,
-                        val innerData:InnerData)
+                        val innerData:ArrayList<InnerData>)
 
 data class InnerData(val name:String,
                         val icon:String)

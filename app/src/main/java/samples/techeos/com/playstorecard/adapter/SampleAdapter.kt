@@ -3,15 +3,17 @@ package samples.techeos.com.playstorecard.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import samples.techeos.com.playstorecard.R
-import samples.techeos.com.playstorecard.beans.SampleData
+import samples.techeos.com.playstorecard.beans.InnerData
 import samples.techeos.com.playstorecard.inflate
 
 /**
  * Created by athul on 24/1/18.
  */
 
-class SampleAdapter(private val items:ArrayList<SampleData>):
+class SampleAdapter(private val items:ArrayList<InnerData>):
         RecyclerView.Adapter<SampleAdapter.ViewHolder>(){
 
 
@@ -20,21 +22,33 @@ class SampleAdapter(private val items:ArrayList<SampleData>):
 
         val inflatedView= parent!!.inflate(R.layout.list_cell_item_card,false)
         return ViewHolder(inflatedView)
+
     }
 
 
 
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val view=holder?.itemView
+        if(position==0||position==1){
+            view?.let {
+                it.visibility=View.INVISIBLE;
+            }
+
+        }else{
+
+            val data=items[position]
+            view?.let {
+                it.visibility=View.VISIBLE
+                Glide.with(it.context).load(data.icon).into(it.findViewById(R.id.iv_card))
+                (it.findViewById(R.id.tv_card) as TextView).text=data.name
+            }
+        }
+
+
     }
 
-
-
-
-
     class ViewHolder(v:View) : RecyclerView.ViewHolder(v){
-
 
     }
 
