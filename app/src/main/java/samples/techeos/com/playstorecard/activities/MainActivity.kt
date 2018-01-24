@@ -1,12 +1,15 @@
 package samples.techeos.com.playstorecard
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 import samples.techeos.com.playstorecard.adapter.SampleAdapter
 import samples.techeos.com.playstorecard.beans.InnerData
+import samples.techeos.com.playstorecard.extension.CustomScrollListner
 import samples.techeos.com.playstorecard.extension.random
 import samples.techeos.com.playstorecard.gravitysnaphelper.GravitySnapHelper
 
@@ -22,7 +25,15 @@ class MainActivity : AppCompatActivity() {
 
         generateUrlList()
         initiateRecyclerView()
+        decorateCardView()
 
+    }
+
+    private fun decorateCardView() {
+
+        rl_back.setBackgroundColor(Color.parseColor("#0097A7"))
+        Glide.with(this).load("https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/topic_images/2015/android-apps-topic.png?itok=gRZTqteM&timestamp=1444304563")
+                .into(iv_back)
     }
 
     private fun generateUrlList() {
@@ -39,10 +50,11 @@ class MainActivity : AppCompatActivity() {
         linearLayoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rv_main.layoutManager=linearLayoutManager
         adapter= SampleAdapter(createSampleData())
-       // rv_main.addOnScrollListener(CustomScrollListner(cv_main))
+       rv_main.addOnScrollListener(CustomScrollListner(iv_back))
         rv_main.adapter=adapter
-        var snapHelper=GravitySnapHelper(Gravity.START)
+        val snapHelper=GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_main)
+
     }
 
     private fun createSampleData(): ArrayList<InnerData> {
