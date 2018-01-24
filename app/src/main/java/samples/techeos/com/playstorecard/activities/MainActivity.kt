@@ -1,13 +1,14 @@
 package samples.techeos.com.playstorecard
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import kotlinx.android.synthetic.main.activity_main.*
 import samples.techeos.com.playstorecard.adapter.SampleAdapter
 import samples.techeos.com.playstorecard.beans.InnerData
-import samples.techeos.com.playstorecard.extension.CustomScrollListner
 import samples.techeos.com.playstorecard.extension.random
+import samples.techeos.com.playstorecard.gravitysnaphelper.GravitySnapHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,14 +39,17 @@ class MainActivity : AppCompatActivity() {
         linearLayoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rv_main.layoutManager=linearLayoutManager
         adapter= SampleAdapter(createSampleData())
-        rv_main.addOnScrollListener(CustomScrollListner(cv_main))
+       // rv_main.addOnScrollListener(CustomScrollListner(cv_main))
+        rv_main.adapter=adapter
+        var snapHelper=GravitySnapHelper(Gravity.START)
+        snapHelper.attachToRecyclerView(rv_main)
     }
 
     private fun createSampleData(): ArrayList<InnerData> {
 
         val list= arrayListOf<InnerData>()
 
-        for (i in 1..6){
+        for (i in 1..10){
             val data:InnerData= InnerData("Title"+i, urlList.random()!!)
             list.add(data)
 

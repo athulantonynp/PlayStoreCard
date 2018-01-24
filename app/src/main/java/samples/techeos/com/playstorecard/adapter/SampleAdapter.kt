@@ -35,7 +35,7 @@ class SampleAdapter(private val items:ArrayList<InnerData>):
 
         }else{
 
-            val data=items[position]
+            val data=items[position-2]
             view?.let {
                 it.visibility=View.VISIBLE
                 Glide.with(it.context).load(data.icon).into(it.findViewById(R.id.iv_card))
