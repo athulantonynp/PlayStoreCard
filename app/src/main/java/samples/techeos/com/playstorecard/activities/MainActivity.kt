@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import samples.techeos.com.playstorecard.adapter.SampleAdapter
 import samples.techeos.com.playstorecard.beans.InnerData
+import samples.techeos.com.playstorecard.extension.CustomScrollListner
+import samples.techeos.com.playstorecard.extension.random
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,11 +32,13 @@ class MainActivity : AppCompatActivity() {
                 "http://theieltscoach.com/wp-content/uploads/2015/03/Video-Production-Icon-Round1-300x300.png")
     }
 
+
     private fun initiateRecyclerView() {
         rv_main.isNestedScrollingEnabled=true
         linearLayoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rv_main.layoutManager=linearLayoutManager
         adapter= SampleAdapter(createSampleData())
+        rv_main.addOnScrollListener(CustomScrollListner(cv_main))
     }
 
     private fun createSampleData(): ArrayList<InnerData> {

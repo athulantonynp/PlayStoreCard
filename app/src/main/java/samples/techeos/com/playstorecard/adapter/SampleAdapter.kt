@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import samples.techeos.com.playstorecard.R
 import samples.techeos.com.playstorecard.beans.InnerData
-import samples.techeos.com.playstorecard.inflate
+import samples.techeos.com.playstorecard.extension.inflate
 
 /**
  * Created by athul on 24/1/18.
@@ -26,8 +26,6 @@ class SampleAdapter(private val items:ArrayList<InnerData>):
     }
 
 
-
-
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val view=holder?.itemView
         if(position==0||position==1){
@@ -44,7 +42,6 @@ class SampleAdapter(private val items:ArrayList<InnerData>):
                 (it.findViewById(R.id.tv_card) as TextView).text=data.name
             }
         }
-
 
     }
 

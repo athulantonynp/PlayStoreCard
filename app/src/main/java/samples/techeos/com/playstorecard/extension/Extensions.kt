@@ -1,4 +1,4 @@
-package samples.techeos.com.playstorecard
+package samples.techeos.com.playstorecard.extension
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
